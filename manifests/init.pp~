@@ -1,0 +1,27 @@
+class google-chrome {
+
+  # Google repository configuration based on
+  # http://www.google.com/linuxrepositories/
+
+  apt::sources_list {"google":
+    ensure  => present,
+    content => "deb http://dl.google.com/linux/chrome/deb/ stable main",
+  }
+
+  # Add Google's apt-key.
+  apt::key {"7FAC5991":
+    source  => "https://dl-ssl.google.com/linux/linux_signing_key.pub",
+  }
+
+  # Install latest stable; remove beta first, if present:
+  package { "google-chrome-beta":
+    ensure => absent,
+  }
+    
+  package { "google-chrome-stable":
+    ensure => latest, # to keep current with security updates
+    require => [ Package["google-chrome-beta"], ],
+  }
+  
+}
+                                
