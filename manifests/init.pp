@@ -1,7 +1,11 @@
 class netbeans {
 
+  file { "/opt/elcweb":
+    ensure => directory,
+  }
+
   file { "/opt/elcweb/packages":
-    ensure => directory
+    ensure => directory,
   }
 
   file { "/opt/elcweb/packages/netbeans-elcweb.deb":
@@ -9,7 +13,7 @@ class netbeans {
     group   => root,
     mode    => 644,
     ensure  => present,
-    source  => "puppet://puppet/adobe-air-2-0-4/adobeair-2.0.4.deb"
+    source  => "puppet:///netbeans-elcweb.deb"
   }
 
   package { "netbeans":
