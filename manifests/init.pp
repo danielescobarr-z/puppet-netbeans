@@ -13,7 +13,7 @@ class netbeans {
     group   => root,
     mode    => 644,
     ensure  => present,
-    source  => "puppet:///netbeans-elcweb.deb"
+    source  => "puppet:///netbeans/netbeans-elcweb.deb"
   }
 
   package { "netbeans":
